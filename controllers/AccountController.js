@@ -10,7 +10,7 @@ const getAccountById = async (req, res) => {
     }
 }
 
-const findByEmail = async (req, res) => {
+const getByEmail = async (req, res) => {
     try {
         const account = await accountService.findByEmail(req.body.email);
         res.status(200).json({data: account});
@@ -48,4 +48,12 @@ const registerUser = async (req, res) => {
     } catch(err) {
         res.status(500).json({ error: err.message })
     }
+}
+
+module.exports = {
+    registerUser,
+    loginInstance,
+    getAccountById,
+    getByEmail,
+    updateAccount
 }
