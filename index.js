@@ -22,13 +22,14 @@ mongoose.connection.once('open',function(){
 
 //Routes
 const accountRouter = require('./routers/AccountRouter')
+const productRouter = require('./routers/ProductRouter')
 
 app.get('/', function (req, res) {
     res.send('Server working');
 });
 
 app.use('/account', accountRouter);
-
+app.use('/product', productRouter);
 
 const server = app.listen(PORT, () => {
     console.log(` \n Server running at ${"http://"+"localhost:"+PORT} \n`);
