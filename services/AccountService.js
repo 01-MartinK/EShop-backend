@@ -1,21 +1,29 @@
 const AccountModel = require('../models/account')
 
-exports.findById = async (id) => {
+const findById = async (id) => {
     return await AccountModel.findById(id);
 }
 
-exports.findByEmail = async (email) => {
+const findByEmail = async (email) => {
     return await AccountModel.find({email: email});
 }
 
-exports.getLoginInstance = async (email, password) => {
+const getLoginInstance = async (email, password) => {
     return await AccountModel.find({email: email, password: password});
 }
 
-exports.updateAccount = async (data) => {
+const updateAccount = async (data) => {
     return await AccountModel.findByIdAndUpdate(data.id, data.model);
 }
 
-exports.registerUser = async (data) => {
+const registerUser = async (data) => {
     return await AccountModel.create(data);
+}
+
+module.exports = {
+    registerUser,
+    updateAccount,
+    getLoginInstance,
+    findByEmail,
+    findById
 }
