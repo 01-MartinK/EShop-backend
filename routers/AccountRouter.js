@@ -8,6 +8,6 @@ router.get('/:id', accountController.getAccountById);
 
 router.post('/login', accountController.loginInstance);
 router.post('/register', accountController.registerUser); 
-router.patch('/update', accountController.updateAccount); // not checked
+router.patch('/update', accountController.updateAccount); // not tested
 
 module.exports = router;
