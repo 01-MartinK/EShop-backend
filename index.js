@@ -11,11 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Routes
-app.get('/', function (req, res) {
-    res.send('Server working');
-});
-
 //Database
 mongoose.connect('mongodb://localhost/eshop', {useNewUrlParser: true});
 
@@ -24,6 +19,16 @@ mongoose.connection.once('open',function(){
 }).on('error',function(err){
     console.log('Error', err);
 })
+
+//Routes
+const accountRouter = require('./routers/AccountRouter')
+
+app.get('/', function (req, res) {
+    res.send('Server working');
+});
+
+app.use('/account', accountRouter);
+
 
 const server = app.listen(PORT, () => {
     console.log(` \n Server running at ${"http://"+"localhost:"+PORT} \n`);

@@ -46,7 +46,7 @@ const registerUser = async (req, res) => {
         const account = await accountService.registerUser(data);
         res.status(200).json({data: account});
     } catch(err) {
-        res.status(500).json({ error: err.message })
+        res.status(500).json({ error: err.message });
     }
 }
 
