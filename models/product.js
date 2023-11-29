@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
         required: false,
     },
     price: {
-        type: Double,
+        type: Number,
         required: true,
     },
     reviews: {
@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
         required: false,
     },
     stars: {
-        type: Integer,
+        type: Number,
         required: false,
     },
     createdAt: {
