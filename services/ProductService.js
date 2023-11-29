@@ -5,11 +5,11 @@ const getById = async (id) => {
 }
 
 const getProductList = async (amount) => {
-    return await ProductModel.findAll().limit(amount);
+    return await ProductModel.find().limit(amount);
 }
 
 const getAllProducts = async () => {
-    return await ProductModel.findAll()
+    return await ProductModel.find()
 }
 
 const addProduct = async (data) => {
@@ -17,7 +17,7 @@ const addProduct = async (data) => {
 }
 
 const updateProduct = async (data) => {
-    return await ProductModel.findByIdAndUpdate(data.id, data.model);
+    return await ProductModel.findByIdAndUpdate(data.id, data);
 }
 
 const deleteProduct = async (id) => {

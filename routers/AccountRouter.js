@@ -5,9 +5,9 @@ const accountController = require('../controllers/AccountController');
 const router = express.Router();
 
 router.get('/:id', accountController.getAccountById);
-router.get('/login', accountController.loginInstance);
 
-router.post('/register', accountController.registerUser);
-router.patch('/update', accountController.updateAccount);
+router.post('/login', accountController.loginInstance);
+router.post('/register', accountController.registerUser); 
+router.patch('/update', accountController.updateAccount); // not checked
 
 module.exports = router;

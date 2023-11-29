@@ -1,18 +1,14 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcryptjs");
 const saltRounds = 10
 
 const hashPassword = (password) => { 
     bcrypt
-        .getSalt(saltRounds)
-        .then(salt => {
-            console.log('Salt: ', salt);
-            return bcrypt.hash(password, salt);
-        })
+        .hash(password, saltRounds)
         .then(hash => {
             console.log('Hash: ', hash);
+            return hash;
         })
         .catch(err => console.error(err.message));
-
 }
 
 module.exports = {

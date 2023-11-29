@@ -9,7 +9,7 @@ const findByEmail = async (email) => {
 }
 
 const getLoginInstance = async (email, password) => {
-    return await AccountModel.find({email: email, password: password});
+    return await AccountModel.findOne({email: email})
 }
 
 const updateAccount = async (data) => {
@@ -17,7 +17,17 @@ const updateAccount = async (data) => {
 }
 
 const registerUser = async (data) => {
-    return await AccountModel.create(data);
+    let newAccount = new AccountModel();
+
+    newAccount.name = data.name;
+    newAccount.email = data.email;
+    
+    newAccount.setPassword(data.password);
+
+    console.log(data);
+    console.log(newAccount);
+
+    return await newAccount.save();
 }
 
 module.exports = {

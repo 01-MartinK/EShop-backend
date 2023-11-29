@@ -1,5 +1,6 @@
 'use strict'
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 
 const accountSchema = new mongoose.Schema({
     name: {
@@ -10,10 +11,8 @@ const accountSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    password: {
-        type: String,
-        required: true,
-    },
+    hash: String,
+    salt: String,
     phonenumber: {
         type: String,
         required: false,
@@ -28,9 +27,18 @@ const accountSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        required: true,
         default: Date.now,
     }
 })
 
-module.exports = mongoose.model('Account', accountSchema);
+accountSchema.methods.setPassword = function(password) {
+    this.salt = crypto.randomBytes(16).toString('hex');
+    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString('hex');
+}
+
+accountSchema.methods.validPassword = function(password) {
+    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString('hex');
+    return this.hash === hash;
+}
+
+const Account = module.exports = mongoose.model('Account', accountSchema);
