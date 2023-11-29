@@ -1,28 +1,29 @@
+'use strict'
 const mongoose = require('mongoose');
 
-const productSchema = new mongoose.Schema({
+const accountSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
     },
-    description: {
+    email: {
         type: String,
-        required: false,
-    },
-    image_path: {
-        type: String,
-        required: false,
-    },
-    price: {
-        type: Double,
         required: true,
     },
-    reviews: {
+    password: {
+        type: String,
+        required: true,
+    },
+    phonenumber: {
+        type: String,
+        required: false,
+    },
+    wishlist: {
         type: Array,
         required: false,
     },
-    stars: {
-        type: Integer,
+    productList: {
+        type: Array,
         required: false,
     },
     createdAt: {
@@ -32,4 +33,4 @@ const productSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Product", productSchema)
+module.exports = mongoose.model('Account', accountSchema);
